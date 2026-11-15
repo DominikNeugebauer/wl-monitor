@@ -1,0 +1,92 @@
+#include <Arduino.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7735.h>
+#include <SPI.h>
+#include "modules/socket/socket.h"
+
+#define TFT_MOSI  8   // IO8
+#define TFT_SCLK  9   // IO9
+#define TFT_CS    10  // IO10
+#define TFT_DC    11  // IO11 (im Code oft DS/RS)
+#define TFT_RST   12  // IO12
+#define TFT_BL    13  // IO13 (Backlight)
+#define LED_PIN   35  // IO35 als Debug-LED
+
+
+Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST);
+
+// const uint16_t PINK = 0xF81F;
+// const int16_t SCREEN_W = 160; // Da Rotation(1) = Landscape
+// const int16_t SCREEN_H = 128;
+
+// const char* halt1 = "Schottentor";
+// const char* zeit1 = "14:32";
+// int versp1 = 3;
+
+// const char* halt2 = "Karlsplatz";
+// const char* zeit2 = "14:35";
+// int versp2 = 0;
+
+// const char* halt3 = "Stephansplatz";
+// const char* zeit3 = "14:41";
+// int versp3 = 1;
+
+// void drawStop(int y, const char* halt, const char* abfahrtszeit, int versp) {
+//   tft.setTextWrap(false);
+//   tft.setTextSize(1);
+  
+//   // Haltestelle schreiben
+//   tft.setTextColor(ST77XX_WHITE);
+//   tft.setCursor(5, y);
+//   tft.print(halt);
+
+//   // Zeit rechtsbündig berechnen
+//   int16_t x1, y1;
+//   uint16_t w, h;
+//   tft.getTextBounds(abfahrtszeit, 0, 0, &x1, &y1, &w, &h);
+//   tft.setCursor(SCREEN_W - w - 5, y);
+//   tft.print(abfahrtszeit);
+
+//   // Verspätung eine Zeile tiefer
+//   tft.setCursor(5, y + 12);
+//   if (versp > 0) {
+//     tft.setTextColor(PINK);
+//     tft.print("+");
+//     tft.print(versp);
+//     tft.print(" min");
+//   } else {
+//     tft.setTextColor(ST77XX_GREEN);
+//     tft.print("puenktlich");
+//   }
+// }
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial && millis() < 3000);
+
+  Serial.println("Starte Display...");
+
+  pinMode(TFT_BL, OUTPUT);
+  digitalWrite(TFT_BL, HIGH); 
+
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, HIGH);
+
+  tft.initR(INITR_BLACKTAB); 
+  tft.setRotation(1);
+  tft.fillScreen(ST77XX_BLACK);
+
+  // int y_start = 15;
+  // int zeilenabstand = 35;
+
+  // drawStop(y_start,                   halt1, zeit1, versp1);
+  // drawStop(y_start + zeilenabstand,    halt2, zeit2, versp2);
+  // drawStop(y_start + 2*zeilenabstand,  halt3, zeit3, versp3);
+}
+
+void loop() {
+  digitalWrite(LED_PIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_PIN, LOW);
+  delay(1000);
+}

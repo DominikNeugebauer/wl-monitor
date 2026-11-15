@@ -1,0 +1,67 @@
+body {
+  background: #f6f7fb;
+}
+
+* {
+  font-family: 'Poppins', 'Roboto', 'Raleway', sans-serif;
+}
+
+/* Util */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Header styles */
+h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 13px;
+  color: #444;
+}
+
+/* Form styles */
+input {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(175, 122, 255);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background: rgb(175, 122, 255);
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: rgb(150, 100, 230);
+}
+
+button:disabled {
+  background: #6d6d6d;
+  cursor: not-allowed;
+}
